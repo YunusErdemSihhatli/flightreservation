@@ -1,5 +1,6 @@
 package com.spring.flightreservation.user;
 
+import com.spring.flightreservation.seat.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,14 @@ public class UserService {
             throw new IllegalStateException("User already exists");
         }
         userRepository.save(user);
+    }
+
+    public User deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new IllegalArgumentException("User with id " + id + " does not exist");
+        }
+        userRepository.deleteById(id);
+        return null;
     }
 
 }

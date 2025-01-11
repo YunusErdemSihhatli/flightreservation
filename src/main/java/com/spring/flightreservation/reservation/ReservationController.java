@@ -34,4 +34,9 @@ public class ReservationController {
     public Reservation updateReservation(@RequestBody Long id, @RequestBody Long flightId, @RequestBody Long seatId) {
         return reservationService.updateReservation(id, flightId, seatId);
     }
+
+    @DeleteMapping
+    public Reservation deleteReservation(@PathVariable Long id) {
+        return reservationService.deleteReservation(id);
+    }
 }

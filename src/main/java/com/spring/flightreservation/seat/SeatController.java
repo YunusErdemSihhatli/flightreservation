@@ -1,5 +1,6 @@
 package com.spring.flightreservation.seat;
 
+import com.spring.flightreservation.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +32,10 @@ public class SeatController {
     @PutMapping
     public Seat updateSeat(@RequestBody Long Id, @RequestBody Long flightId, @RequestBody boolean isAvailable) {
         return seatService.updateSeat(Id, flightId, isAvailable);
+    }
+
+    @DeleteMapping
+    public Seat deleteSeat(@RequestBody Long id) {
+        return seatService.deleteSeat(id);
     }
 }

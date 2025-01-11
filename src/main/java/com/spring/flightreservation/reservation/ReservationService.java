@@ -1,5 +1,6 @@
 package com.spring.flightreservation.reservation;
 
+import com.spring.flightreservation.flight.Flight;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -45,8 +46,12 @@ public class ReservationService {
         return reservation;
     }
 
-    public void deleteReservation(Long id) {
+    public Reservation deleteReservation(Long id) {
+        if (!reservationRepository.existsById(id)) {
+            throw new IllegalArgumentException("Reservation with id " + id + " does not exist");
+        }
         reservationRepository.deleteById(id);
+        return null;
     }
 
     private boolean seatReserved(Long flightId, Long seatId) {

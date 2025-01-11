@@ -10,10 +10,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -25,5 +27,10 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         userService.createUser(user);
         return user;
+    }
+
+    @DeleteMapping
+    public User deleteUser(@RequestBody Long id) {
+        return userService.deleteUser(id);
     }
 }

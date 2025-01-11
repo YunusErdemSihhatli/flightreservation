@@ -41,8 +41,12 @@ public class SeatService {
         return seat;
     }
 
-    public void deleteSeat(Long Id) {
-        seatRepository.deleteById(Id);
+    public Seat deleteSeat(Long id) {
+        if (!seatRepository.existsById(id)) {
+            throw new IllegalArgumentException("Seat with id " + id + " does not exist");
+        }
+        seatRepository.deleteById(id);
+        return null;
     }
 
 }
